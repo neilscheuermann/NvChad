@@ -41,6 +41,16 @@ M.my_custom_mappings = {
       end,
       "search diagnostics",
     },
+    ["<leader>cl"] = {
+      function()
+        local relative_path = vim.fn.expand("%")           -- Get relative file path
+        local line_number = vim.fn.line(".")               -- Get current line number
+        local full_path = relative_path .. ":" .. line_number  -- Format as path:line_number
+        vim.fn.setreg("+", full_path)                      -- Copy to system clipboard
+        print("Copied: " .. full_path)                     -- Optional feedback message
+      end,
+      "Copy relative path with line number",
+    },
   },
 
   v = {
